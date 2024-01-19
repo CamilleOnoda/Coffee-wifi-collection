@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="home-container" style="overflow:hidden;">
+<div class="home-container">
   <header class="d-flex justify-content-center py-3">
     <span>Cafe Crawl</span>
     <ul class="nav nav-pills">
@@ -14,16 +14,15 @@
   </header>
   <div class="row flex-m-row-reverse align-items-center g-5 py-5">
     <div class="col-10 col-sm-8 col-lg-6">
-      <img src="/static/images/inuyama-sakura.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" 
-      width="600" height="280" loading="lazy">
+      <img src="/static/images/inuyama-sakura.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"loading="lazy">
     </div>
-    <div class="col-lg-5">
+    <div class="col-md-5">
       <h4 class="display-8 fw-bold text-body-emphasis lh-1 mb-3">
         Thank you for checking this website!❤️</h4>
       <p>This app is born out of my love for road cycling and the 
         joy of discovering cyclist-friendly cafes.
         I'm committed to maintaining and enhancing this app, making sure that it 
-        remains accessible to fellow cyclists eager to share their favorite cafes!<br>
+        remains accessible to fellow cyclists eager to share their favorite cafes!
         I built it as part of my programming journey, to further improve my web 
         development skills with python🐍</p>
         {% if logged_in %}
