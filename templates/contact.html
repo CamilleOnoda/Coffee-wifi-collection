@@ -6,11 +6,16 @@
   <span>Cafe Crawl</span>
   <ul class="nav nav-pills">
     <li class="nav-item"><a href="{{url_for('about')}}" class="nav-link active" aria-current="page">About</a></li>
+    {% if not logged_in %}
+    <li class="nav-item"><a href="{{url_for('login')}}" class="nav-link">Login</a></li>
+    <li class="nav-item"><a href="{{url_for('register')}}" class="nav-link">Register</a></li>
+    {% else %}
     <li class="nav-item"><a href="{{url_for('logout')}}" class="nav-link">Log out</a></li>
+    {% endif %}
   </ul>
 </header>
 <div class="img">
-  <img src="/static/images/cafe.jpg">
+  <img src="/static/images/contact.jpg"style="width: 400px; height: 400px";>
 </div>
 <div class="container mt-4">
   <div class="row justify-content-center">
