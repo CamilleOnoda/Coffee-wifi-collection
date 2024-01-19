@@ -12,25 +12,22 @@
       <li class="nav-item"><a href="{{url_for('logout')}}" class="nav-link">Log out</a></li>
       {% endif %}
   </header>
-  <div class="row flex-m-row-reverse align-items-center g-5 py-5">
-    <div class="col-10 col-sm-8 col-lg-6">
-      <img src="/static/images/inuyama-sakura.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"loading="lazy">
+  <div class="flex-container">
+    <div class="img">
+      <img src="/static/images/inuyama-sakura.jpg">
     </div>
-    <div class="col-md-5">
-      <h4 class="display-8 fw-bold text-body-emphasis lh-1 mb-3">
-        Thank you for checking this website!❤️</h4>
-      <p>This app is born out of my love for road cycling and the 
-        joy of discovering cyclist-friendly cafes.
-        I'm committed to maintaining and enhancing this app, making sure that it 
-        remains accessible to fellow cyclists eager to share their favorite cafes!
-        I built it as part of my programming journey, to further improve my web 
-        development skills with python🐍</p>
-        {% if logged_in %}
-        <a class="btn btn-warning btn-lg" href="{{ url_for('cafes') }}" role="button">Show me the cafes</a>
-        {% endif %}
-        <a class="btn btn-warning btn-m" href="{{ url_for('home') }}">
-          🔙 Return to home page</a>
-    </div>
+    <h3>Thank you for checking this website!❤️</h3>
+    <p>This app is born out of my love for road cycling and the 
+      joy of discovering cyclist-friendly cafes.
+      I'm committed to maintaining and enhancing this app, making sure that it 
+      remains accessible to fellow cyclists eager to share their favorite cafes!
+      I built it as part of my programming journey, to further improve my web 
+      development skills with python🐍</p>
+      {% if logged_in %}
+      <a class="btn btn-warning btn-lg" href="{{ url_for('cafes') }}" role="button">Show me the cafes</a>
+      {% endif %}
+      <a class="btn btn-warning btn-m" href="{{ url_for('home') }}">
+        🔙 Return to home page</a>
   </div>
 </div>
 {% endblock %}
