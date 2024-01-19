@@ -1,5 +1,4 @@
 from flask import Flask, redirect, render_template, url_for, request, flash, session, abort
-from flask_migrate import Migrate
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
