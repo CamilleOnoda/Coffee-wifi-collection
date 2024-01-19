@@ -16,7 +16,7 @@ from the database.</p>
 <img src="static/images/homepage.png" width="600">
 <img src="static/images/cafes-list.png" width="600">
 <h2>Deployment</h2>
-<a>https://coffeeandwifi-0a0e.onrender.com/</a>
+<a href="https://coffeeandwifi-0a0e.onrender.com/" rel="noreferrer noopener">Coffee Crawl</a>
 <h2>Built with</h2>
 <ul>
 <li>Python</li>
