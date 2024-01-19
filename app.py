@@ -271,14 +271,14 @@ def delete():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html', logged_in=current_user.is_authenticated)
 
 @app.route('/contact')
 def contact():
     form = contactForm()
     if form.validate_on_submit():
         return redirect(url_for('home'))
-    return render_template('contact.html', form=form)
+    return render_template('contact.html', form=form, logged_in=current_user.is_authenticated)
 
 if __name__ == '__main__':
     app.run(debug=True)
