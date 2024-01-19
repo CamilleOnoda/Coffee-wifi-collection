@@ -106,8 +106,9 @@ a {
 
 img {
   display: block;
-  width: 70vw;
+  width: 60vw;
   height: 500px;
+  border-radius: 40%;
 }
 
 
