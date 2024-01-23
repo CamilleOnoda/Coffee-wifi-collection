@@ -1,16 +1,7 @@
 {% extends 'base.html' %}
 {% from 'bootstrap5/form.html' import render_form %}
 {% block content %}
-<div class="bg-container">
-<header class="d-flex justify-content-center py-3">
-  <span>Cafe Crawl</span>
-  <ul class="nav nav-pills">
-    <li class="nav-item"><a href="{{url_for('about')}}" class="nav-link active" aria-current="page">About</a></li>
-    <li class="nav-item"><a href="{{url_for('contact')}}" class="nav-link">Contact</a></li>
-    <li class="nav-item"><a href="{{url_for('logout')}}" class="nav-link">Log out</a></li>
-  </ul>
-</header>
-<div class="img">
+<div>
   <img src="/static/images/cafe.jpg">
 </div>
 <div class="container mt-4">
