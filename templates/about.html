@@ -1,19 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="home-container">
-  <header class="d-flex justify-content-center py-3">
-    <span>Cafe Crawl</span>
-    <ul class="nav nav-pills">
-      <li class="nav-item"><a href="{{url_for('contact')}}" class="nav-link active">Contact</a></li>
-      {% if not logged_in %}
-      <li class="nav-item"><a href="{{url_for('login')}}" class="nav-link">Login</a></li>
-      <li class="nav-item"><a href="{{url_for('register')}}" class="nav-link">Register</a></li>
-      {% else %}
-      <li class="nav-item"><a href="{{url_for('logout')}}" class="nav-link">Log out</a></li>
-      {% endif %}
-  </header>
   <div class="flex-container">
-    <div class="img">
+    <div>
       <img src="/static/images/inuyama-sakura.jpg">
     </div>
     <h3>Thank you for checking this website!❤️</h3>
@@ -29,6 +17,5 @@
       <a class="btn btn-warning btn-m" href="{{ url_for('home') }}">
         🔙 Return to home page</a>
   </div>
-</div>
 {% endblock %}
 
