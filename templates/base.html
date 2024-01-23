@@ -16,11 +16,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=
     Sacramento&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=
-    Roboto+Mono&family=Sacramento&display=swap" rel="stylesheet">
     {% endblock %}
     <title>{% block title %}Cafe Crawl{% endblock %}</title>
   </head>
+  <header>
+    <span>Cafe Crawl</span>
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href="{{url_for('about')}}" class="nav-link active" aria-current="page">About</a></li>
+      <li class="nav-item"><a href="{{url_for('contact')}}" class="nav-link">Contact</a></li>
+      {% if not logged_in %}
+      <li class="nav-item"><a href="{{url_for('login')}}" class="nav-link">Login</a></li>
+      <li class="nav-item"><a href="{{url_for('register')}}" class="nav-link">Register</a></li>
+      {% else %}
+      <li class="nav-item"><a href="{{url_for('logout')}}" class="nav-link">Log out</a></li>
+      {% endif %}
+      </ul>
+  </header>
   <body>
     {% block content %}
     {% endblock %}
