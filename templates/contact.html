@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% from 'bootstrap5/form.html' import render_form %}
 {% block content %}
-<div class="bg-container">
 <div>
   <img src="/static/images/contact.jpg">
 </div>
@@ -13,7 +12,6 @@
       <a class="btn btn-warning btn-m" href="{{ url_for('home') }}">🚀Send!</a>
     </div>
   </div>
-</div>
 <a class="btn btn-warning btn-m" href="{{ url_for('home') }}">
     🔙 Return to home page</a>
 {% if logged_in %}
