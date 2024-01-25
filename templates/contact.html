@@ -4,13 +4,14 @@
 <div>
   <img src="/static/images/contact.jpg">
 </div>
-  <div class="flex-container">
+<div class="flex-container">
       <h2>Send me a message</h2>
       {{ render_form(form, novalidate=true) }}
-  </div>
-<a class="btn btn-warning btn-m" href="{{ url_for('home') }}">
-    🔙 Return to home page</a>
-{% if logged_in %}
-    <a class="btn btn-warning btn-lg" href="{{ url_for('cafes') }}" role="button">Show me the cafes</a>
-{% endif %}
+    <a class="btn btn-warning btn-m" href="{{ url_for('home') }}">
+        🔙 Return to home page</a>
+    {% if logged_in %}
+        <a class="btn btn-warning btn-lg" href="{{ url_for('cafes') }}" 
+        role="button">Show me the cafes</a>
+    {% endif %}
+</div>
 {% endblock %}
