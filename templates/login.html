@@ -16,7 +16,7 @@
         {% endif %}
       {% endwith %}
       {{ render_form(form, novalidate=true) }}
+      <a class="btn btn-warning btn-m" href="{{ url_for('home') }}">
+        🔙 Return to home page</a>
     </div>
-<a class="btn btn-warning btn-m" href="{{ url_for('home') }}">
-    🔙 Return to home page</a>
 {% endblock %}
