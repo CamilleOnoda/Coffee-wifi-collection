@@ -1,14 +1,11 @@
 {% extends 'base.html' %}
 {% from 'bootstrap5/form.html' import render_form %}
 {% block content %}
-<div class="bg-container">
 <div>
   <img src="/static/images/welcome.jpg">
 </div>
-<div class="container mt-4">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <h2 class="mb-4">Log in</h2>
+  <div class="flex-container">
+      <h2>Log in</h2>
       {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul class="flashes">
@@ -20,9 +17,6 @@
       {% endwith %}
       {{ render_form(form, novalidate=true) }}
     </div>
-  </div>
-</div>
 <a class="btn btn-warning btn-m" href="{{ url_for('home') }}">
     🔙 Return to home page</a>
-</div>
 {% endblock %}
