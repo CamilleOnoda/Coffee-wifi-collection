@@ -37,7 +37,7 @@ footer {
   }
 }
 
-span {
+h1 {
   font-family: 'Sacramento', cursive;
   font-size: 2rem;
 }
@@ -111,6 +111,14 @@ img {
 h3 {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+#images-homePage {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
 }
 
 /*Form style*/
