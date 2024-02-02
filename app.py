@@ -1,4 +1,3 @@
-from tokenize import String
 from flask import Flask, redirect, render_template, url_for, request, flash, session, abort
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
@@ -144,16 +143,21 @@ def register():
             flash("This username already exist. Choose another one or log in instead.")
             return redirect(url_for('register'))
         
-        hashed_salted_password = generate_password_hash(form.password.data,
-                                                        method='pbkdf2:sha256',
-                                                        salt_length=8)
+        hashed_salted_password = generate_password_hash(
+            form.password.data,
+            method='pbkdf2:sha256',
+            salt_length=8
+            )
+        
         new_user = User(password = hashed_salted_password,
                         username = form.username.data,
                         is_admin = is_admin)
+        
         db.session.add(new_user)
         db.session.commit()
         login_user(new_user)
         session['name'] = new_user.username
+
         return redirect(url_for('cafes'))
     return render_template('register.html', form=form)
 
@@ -166,15 +170,19 @@ def login():
         password = form.password.data
         result = db.session.execute(db.select(User).where(User.username == username))
         user = result.scalar()
+
         if not user:
             flash("This username does not exist. Register instead.")
             return redirect(url_for('register'))
+        
         elif not check_password_hash(user.password, password):
             flash("Incorrect password. Please try again.")
+
         else:
             login_user(user)
             session['name'] = user.username
             return redirect(url_for('cafes'))
+        
     return render_template('login.html', form=form)
 
 
@@ -218,6 +226,7 @@ def add():
         )
         db.session.add(new_cafe)
         db.session.commit()
+
         return redirect(url_for('cafes'))
     return render_template('add.html', form=form)
 
@@ -227,10 +236,13 @@ def add():
 def edit():
     cafe_to_edit_id = request.args.get('id')
     cafe = db.get_or_404(Cafe, cafe_to_edit_id)
+
     if cafe.closed == "Always open":
         selected_closed_days = ['Always open']
+
     else:
         selected_closed_days = cafe.closed.split()
+
     edit_form = Cafeform(
         cafe = cafe.cafe,
         city = cafe.city,
@@ -242,6 +254,7 @@ def edit():
         wifi = cafe.wifi,
         power = cafe.power
     )
+
     if edit_form.validate_on_submit():
         cafe.cafe = edit_form.cafe.data
         cafe.city = edit_form.city.data
@@ -253,6 +266,7 @@ def edit():
         cafe.wifi = edit_form.wifi.data
         cafe.power = edit_form.power.data
         db.session.commit()
+
         return redirect(url_for('cafes'))
     return render_template('edit.html', form=edit_form)
 
@@ -265,8 +279,10 @@ def delete():
 
     cafe_id = request.args.get('id')
     cafe_to_delete = db.get_or_404(Cafe, cafe_id)
+
     db.session.delete(cafe_to_delete)
     db.session.commit()
+
     return redirect(url_for('cafes'))
 
 
@@ -277,6 +293,7 @@ def about():
 @app.route('/contact')
 def contact():
     form = contactForm()
+    
     if form.validate_on_submit():
         return redirect(url_for('home'))
     return render_template('contact.html', form=form, logged_in=current_user.is_authenticated)
