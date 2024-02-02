@@ -22,7 +22,7 @@ footer {
   align-content: space-evenly;
   align-items: center;
   justify-items: center;
-  background-color: darkgrey;
+  background-color:#212529;
 }
 
 @keyframes gradient-animation {
