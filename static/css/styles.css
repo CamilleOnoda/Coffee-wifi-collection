@@ -2,21 +2,27 @@
   box-sizing: border-box;
 }
 
+body {
+  min-height: 100vh;
+  display: grid;
+}
+
 header {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 180% 180%;
   animation: gradient-animation 15s ease infinite;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  align-content: space-evenly;
   align-items: center;
-  padding: 20px 0;
+  justify-items: center;
 }
 
 footer {
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 180% 180%;
-  animation: gradient-animation 15s ease infinite;
-  padding: 20px;
+  display: grid;
+  align-content: space-evenly;
+  align-items: center;
+  justify-items: center;
+  background-color: darkgrey;
 }
 
 @keyframes gradient-animation {
@@ -77,6 +83,10 @@ a {
   color: white;
 }
 
+#footer-text {
+  color: white;
+}
+
 
 #submit,
 .nav-pills .nav-link.active
@@ -92,6 +102,16 @@ img {
   border-radius: 35%;
 }
 
+#about-text {
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+h3 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
 /*Form style*/
 .form-label {
