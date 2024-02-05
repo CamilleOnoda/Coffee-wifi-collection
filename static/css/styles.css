@@ -163,10 +163,6 @@ ul li {
   --bs-table-bg: #212529;
 }
 
-.table tr:hover {
-  font-weight: bold;
-}
-
 .table tr:hover a {
   font-weight: normal;
 }
