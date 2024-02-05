@@ -10,6 +10,7 @@
           <tr>
             <th>Cafe</th>
             <th>City</th>
+            <th>Country</th>
             <th>Location (URL)</th>
             <th>Opening hours</th>
             <th>Closing days</th>
@@ -29,8 +30,9 @@
             {% endif %}
             {% for cafe in cafes_list %}
               <tr>
-                <td>{{ cafe.cafe }}</td>
+                <td>{{ cafe.cafe_name }}</td>
                 <td>{{ cafe.city }}</td>
+                <td>{{ cafe.country }}</td>
                 <td>
                 {% if cafe.location.startswith('http') %}
                   <a id="map" href="{{ cafe.location }}" target="_blank" rel="noopener noreferrer">
