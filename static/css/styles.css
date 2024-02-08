@@ -7,6 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: lavenderblush;
 }
 
 header {
@@ -27,6 +28,7 @@ footer {
   align-items: center;
   justify-content: center;
   background-color:#212529;
+  padding-top: 10px;
 }
 
 @keyframes gradient-animation {
@@ -52,8 +54,6 @@ h1 {
   align-items: center;
   padding-top: 20px;
   background-color: lavenderblush;
-  height: 100vh;
-  justify-content: center;
 }
 
 /*Header*/
@@ -125,7 +125,7 @@ h3, p {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  margin-bottom: 40px;
+  overflow: overlay;
 }
 
 /*Form style*/
