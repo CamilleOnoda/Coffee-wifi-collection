@@ -1,6 +1,7 @@
 from flask import Flask, redirect, render_template, url_for, request, flash, session, abort
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship, Mapped
 from sqlalchemy.ext.declarative import declarative_base
 from flask_wtf import FlaskForm
 from wtforms import EmailField, PasswordField, StringField, SelectField, SelectMultipleField, SubmitField, widgets
@@ -37,9 +38,10 @@ class RegisterForm(FlaskForm):
 
 
 class Cafeform(FlaskForm):
-    cafe = StringField('Cafe', validators=[DataRequired()])
+    cafe_name = StringField('Cafe', validators=[DataRequired()])
     city = StringField('City', validators=[DataRequired()])
-    location = StringField('Location', validators=[DataRequired()])
+    country = StringField('Country', validators=[DataRequired()])
+    location = StringField('Location (URL)', validators=[DataRequired()])
     open_hours = StringField('Opening hours (e.g. 8am - 5pm)', validators=[DataRequired()])
     closed_choices = [
         ('Always open', 'Always open'),
@@ -96,25 +98,28 @@ class BaseModel(Base):
         'mysql_charset': 'utf8mb4'
     }
 
-
-class Cafe(BaseModel, db.Model):
+class User(UserMixin, db.Model, Base):
     id = db.Column(db.Integer, primary_key=True)
-    cafe = db.Column(db.String(250), unique=True, nullable=False)
-    city = db.Column(db.String(250), nullable=False)
-    location = db.Column(db.String(250), unique=True, nullable=False)
-    open_hours = db.Column(db.String(250), nullable=False )
-    closed = db.Column(db.String(250), nullable=False)
-    sweets = db.Column(db.String(250), nullable=False)
-    coffee = db.Column(db.String(250), nullable=False)
-    wifi = db.Column(db.String(250), nullable=False)
-    power = db.Column(db.String(250), nullable=False)
-
-
-class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100))
+    username = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
-    is_admin = db.Column(db.Boolean, default=False)
+    is_admin = db.Column(db.String(100), default=False)
+    cafes_added = relationship("Cafe", back_populates="user")
+    
+
+class Cafe(BaseModel, db.Model, Base):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    user = relationship("User", back_populates="cafes_added")
+    cafe_name = db.Column(db.String(100), unique=True, nullable=False)
+    city = db.Column(db.String(100), nullable=False)
+    country = db.Column(db.String(100), nullable=False)
+    location = db.Column(db.String(100), nullable=False)
+    open_hours = db.Column(db.String(100), nullable=False)
+    closed = db.Column(db.String(100), nullable=False)
+    sweets = db.Column(db.String(100), nullable=False)
+    coffee = db.Column(db.String(100), nullable=False)
+    wifi = db.Column(db.String(100), nullable=False)
+    power = db.Column(db.String(100), nullable=False)
 
 
 with app.app_context():
@@ -173,11 +178,9 @@ def login():
 
         if not user:
             flash("This username does not exist. Register instead.")
-            return redirect(url_for('register'))
-        
+            return redirect(url_for('register'))     
         elif not check_password_hash(user.password, password):
             flash("Incorrect password. Please try again.")
-
         else:
             login_user(user)
             session['name'] = user.username
@@ -203,7 +206,7 @@ def home():
 @login_required
 def cafes():
     name = current_user.username if current_user.is_authenticated else ''
-    cafes_list = list(db.session.execute(db.select(Cafe).order_by(Cafe.city)).scalars())
+    cafes_list = list(db.session.execute(db.select(Cafe).order_by(Cafe.country)).scalars())
     return render_template('cafes.html', cafes_list=cafes_list, name=name, logged_in=True)
 
 
@@ -214,15 +217,17 @@ def add():
     if form.validate_on_submit():
         closed_days = ' '.join(form.closed.data)
         new_cafe= Cafe(
-            cafe=form.cafe.data,
+            cafe_name=form.cafe_name.data,
             city=form.city.data,
+            country=form.country.data,
             location=form.location.data,
             open_hours=form.open_hours.data,
             closed=closed_days,
             sweets=form.sweets.data,
             coffee=form.coffee.data,
             wifi=form.wifi.data,
-            power=form.power.data
+            power=form.power.data,
+            user_id=current_user.id
         )
         db.session.add(new_cafe)
         db.session.commit()
@@ -235,36 +240,37 @@ def add():
 @login_required
 def edit():
     cafe_to_edit_id = request.args.get('id')
-    cafe = db.get_or_404(Cafe, cafe_to_edit_id)
+    cafe_name= db.get_or_404(Cafe, cafe_to_edit_id)
 
-    if cafe.closed == "Always open":
+    if cafe_name.closed == "Always open":
         selected_closed_days = ['Always open']
-
     else:
-        selected_closed_days = cafe.closed.split()
+        selected_closed_days = cafe_name.closed.split()
 
     edit_form = Cafeform(
-        cafe = cafe.cafe,
-        city = cafe.city,
-        location = cafe.location,
-        open_hours = cafe.open_hours,
+        cafe = cafe_name.cafe_name,
+        city = cafe_name.city,
+        country = cafe_name.country,
+        location = cafe_name.location,
+        open_hours = cafe_name.open_hours,
         closed = selected_closed_days,
-        sweets = cafe.sweets,
-        coffee = cafe.coffee,
-        wifi = cafe.wifi,
-        power = cafe.power
+        sweets = cafe_name.sweets,
+        coffee = cafe_name.coffee,
+        wifi = cafe_name.wifi,
+        power = cafe_name.power
     )
 
     if edit_form.validate_on_submit():
-        cafe.cafe = edit_form.cafe.data
-        cafe.city = edit_form.city.data
-        cafe.location = edit_form.location.data
-        cafe.open_hours = edit_form.open_hours.data
-        cafe.closed = ' '.join(edit_form.closed.data)
-        cafe.sweets = edit_form.sweets.data
-        cafe.coffee = edit_form.coffee.data
-        cafe.wifi = edit_form.wifi.data
-        cafe.power = edit_form.power.data
+        cafe_name.cafe_name = edit_form.cafe_name.data
+        cafe_name.city = edit_form.city.data
+        cafe_name.country = edit_form.country.data
+        cafe_name.location = edit_form.location.data
+        cafe_name.open_hours = edit_form.open_hours.data
+        cafe_name.closed = ' '.join(edit_form.closed.data)
+        cafe_name.sweets = edit_form.sweets.data
+        cafe_name.coffee = edit_form.coffee.data
+        cafe_name.wifi = edit_form.wifi.data
+        cafe_name.power = edit_form.power.data
         db.session.commit()
 
         return redirect(url_for('cafes'))
