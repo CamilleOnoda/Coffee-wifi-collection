@@ -1,11 +1,11 @@
 from flask import Flask, redirect, render_template, url_for, request, flash, session, abort
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import relationship, Mapped
+from sqlalchemy.orm import relationships
 from sqlalchemy.ext.declarative import declarative_base
 from flask_wtf import FlaskForm
-from wtforms import EmailField, PasswordField, StringField, SelectField, SelectMultipleField, SubmitField, widgets
-from wtforms.validators import DataRequired, Email, Length
+from wtforms import EmailField, PasswordField, StringField, SelectField, SelectMultipleField, SubmitField, TextAreaField, widgets
+from wtforms.validators import DataRequired, Email
 from flask_login import LoginManager, UserMixin, login_user, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
@@ -86,7 +86,7 @@ class Cafeform(FlaskForm):
 class contactForm(FlaskForm):
     name = StringField('Your name', validators=[DataRequired()])
     email = EmailField('Your email', validators=[Email()])
-    message = StringField('Your message', validators=[DataRequired(), Length(500)])
+    message = TextAreaField('Your message')
 
 
 Base = declarative_base()
