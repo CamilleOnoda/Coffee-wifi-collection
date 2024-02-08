@@ -8,15 +8,14 @@
 <body>
 <h1 style="text-align:center">Welcome!</h1>
 <p>Thank you for exploring my project! This app is born out of my love for road cycling and the joy of discovering cyclist-friendly cafes. I'm committed to maintaining and enhancing this app, making sure that it remains accessible to fellow cyclists eager to share their favorite cafes. Their feedback is invaluable, and I will continue improving usability and adding new features based on their suggestions.</p>
-<h2 style="text-align:center">☕️Coffee & Wifi 💻</h2>
+<h2 style="text-align:center">Cafe Crawl</h2>
 <p>This Python script implements a web application using the Flask framework
 for managing information about cafes. The application allows users to view a
 list of cafes, add new cafes, edit existing cafe details, and delete cafes
 from the database.</p>
-<img src="static/images/homepage.png" width="600">
-<img src="static/images/cafes-list.png" width="600">
+<img src="static/images/cafecrawl.png" height="400">
 <h2>Deployment</h2>
-<a href="https://coffeeandwifi-0a0e.onrender.com/" rel="noreferrer noopener">Coffee Crawl</a>
+<a href="https://coffeeandwifi-0a0e.onrender.com/" rel="noreferrer noopener">Cafe Crawl</a>
 <h2>Built with</h2>
 <ul>
 <li>Python</li>
@@ -82,19 +81,20 @@ from the database.</p>
 <h2>Cafe list page</h2>
 <ul>
 <li>Access the cafe list page at /cafes.</li>
-<li>View that requires users to be logged in. The route is decorated with the login_required decorator.</li>
-<li>Displays a list of cafes (ordered by city) stored in the database with all the information associated.</li>
+<li>View that requires users to be logged in.</li>
+<li>Displays a list of cafes (ordered by country) stored in the database with all the information associated.</li>
+<li>The edit button is only visible if the user added that particular cafe. Otherwise a button 'request edit' is displayed which redirects to the contact page.</li>
 </ul>
 <h2>Add cafe page</h2>
 <ul>
 <li>Access the add cafe page at /add.</li>
-<li>View that requires users to be logged in. The route is decorated with the login_required decorator.</li>
+<li>View that requires users to be logged in.</li>
 <li>Allows users to add a new cafe by providing necessary details through a form.</li>
 </ul>
 <h2>Edit cafe page</h2>
 <ul>
 <li>Access the edit cafe page at /edit.</li>
-<li>View that requires users to be logged in. The route is decorated with the login_required decorator.</li>
+<li>View that requires users to be logged in and only accessible to the user who added that particular cafe.</li>
 <li>Edit the selected cafe details through a form. Information associated to the selected cafe are pre-filled in the form; updated information will be saved to the database and displayed at /cafes.</li>
 </ul>
 <h2>Delete cafe page</h2>
