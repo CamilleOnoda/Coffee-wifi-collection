@@ -1,7 +1,7 @@
 from flask import Flask, redirect, render_template, url_for, request, flash, session, abort
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import relationships
+from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from flask_wtf import FlaskForm
 from wtforms import EmailField, PasswordField, StringField, SelectField, SelectMultipleField, SubmitField, TextAreaField, widgets
