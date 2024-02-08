@@ -6,8 +6,11 @@
 </div>
 <div class="flex-container">
       <h2>Send me a message</h2>
+      <p>This form does not work yet.</p>
       {{ render_form(form, novalidate=true) }}
-    <a class="btn btn-warning btn-m" href="{{ url_for('home') }}">
+      <a class="btn btn-warning btn-lg" href="#" 
+      role="button">Send</a>
+      <a class="btn btn-warning btn-m" href="{{ url_for('home') }}">
         🔙 Return to home page</a>
     {% if logged_in %}
         <a class="btn btn-warning btn-lg" href="{{ url_for('cafes') }}" 
