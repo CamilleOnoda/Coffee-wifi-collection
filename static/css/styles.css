@@ -143,10 +143,6 @@ ul li {
   width: fit-content;
 }
 
-.btn:hover {
-  font-weight: bold;
-}
-
 .table {
   margin-top: 50px;
 }
@@ -168,7 +164,6 @@ ul li {
 }
 
 .table tr:hover .btn {
-  font-weight: bold;
   color: black;
 }
 
