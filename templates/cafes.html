@@ -52,7 +52,7 @@
                     <a class="btn btn-warning btn-m" href="{{ url_for('edit', id=cafe.id) }}">
                     Edit</a>
                     {% else %}
-                    <a class="btn btn-warning btn-m" href="#">
+                    <a class="btn btn-warning btn-m" href="{{ url_for('contact') }}">
                       Request edit</a>
                     {% endif %}
                     {% if is_admin %}
