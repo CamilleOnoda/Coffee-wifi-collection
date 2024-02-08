@@ -4,7 +4,7 @@
 <div>
   <img src="/static/images/welcome.jpg">
 </div>
-  <div class="flex-container">
+
       <h2>Log in</h2>
       {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -18,5 +18,5 @@
       {{ render_form(form, novalidate=true) }}
       <a class="btn btn-warning btn-m" href="{{ url_for('home') }}">
         🔙 Return to home page</a>
-    </div>
+
 {% endblock %}

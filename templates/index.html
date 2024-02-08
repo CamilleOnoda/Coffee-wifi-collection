@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="flex-container">
+
   <div id="images-homePage">
     <img src="/static/images/three-cafes.jpg">
     <img src="/static/images/inuyama-sakura.jpg">
@@ -13,5 +13,5 @@
     {% if logged_in %}
     <a class="btn btn-warning btn-lg" href="{{ url_for('cafes') }}" role="button">Show me the cafes</a>
     {% endif %}
-</div>
+
 {% endblock %}
