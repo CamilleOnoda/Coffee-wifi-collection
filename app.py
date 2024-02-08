@@ -207,7 +207,8 @@ def home():
 def cafes():
     name = current_user.username if current_user.is_authenticated else ''
     cafes_list = list(db.session.execute(db.select(Cafe).order_by(Cafe.country)).scalars())
-    return render_template('cafes.html', cafes_list=cafes_list, name=name, logged_in=True)
+    return render_template('cafes.html', cafes_list=cafes_list, name=name, 
+                           logged_in=True, current_user=current_user.is_authenticated)
 
 
 @app.route('/add', methods=['GET', 'POST'])
