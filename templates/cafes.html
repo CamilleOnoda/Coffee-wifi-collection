@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="bg-container">
-<p id="logged-in">Logged in as: <span>{{name.title()}}</span></p>
+<p id="logged-in">Logged in as: <span>{{name}}</span></p>
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
@@ -30,7 +30,7 @@
             {% endif %}
             {% for cafe in cafes_list %}
               <tr>
-                <td>{{ cafe.cafe_name }}</td>
+                <td>{{ cafe.cafe_name }} (Added by:{cafe.user})</td>
                 <td>{{ cafe.city }}</td>
                 <td>{{ cafe.country }}</td>
                 <td>
@@ -50,7 +50,7 @@
                 <td>
                   <a class="btn btn-warning btn-m" href="{{ url_for('edit', id=cafe.id) }}">
                     Edit</a>
-                    {% if current_user.is_authenticated and current_user.is_admin %}
+                    {% if current_user.is_admin %}
                     <a class="btn btn-warning btn-m" href="{{ url_for('delete', id=cafe.id) }}">
                     Delete</a>
                     {% endif %}
