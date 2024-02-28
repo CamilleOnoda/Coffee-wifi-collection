@@ -7,13 +7,15 @@
 </head>
 <body>
 <h1 style="text-align:center">Welcome!</h1>
-<p>Thank you for exploring my project! This app is born out of my love for road cycling and the joy of discovering cyclist-friendly cafes. I'm committed to maintaining and enhancing this app, making sure that it remains accessible to fellow cyclists eager to share their favorite cafes. Their feedback is invaluable, and I will continue improving usability and adding new features based on their suggestions.</p>
+<p>Thank you for exploring my project! This app is born out of my love for 
+discovering friendly cafes. This application was the final project of the CS50 Introduction
+to Computer Science course.</p>
 <h2 style="text-align:center">Cafe Crawl</h2>
 <p>This Python script implements a web application using the Flask framework
 for managing information about cafes. The application allows users to view a
 list of cafes, add new cafes, edit existing cafe details, and delete cafes
 from the database.</p>
-<img src="static/images/cafecrawl.png" height="400">
+<img src="static/images/readmeImage.png" height="400">
 <h2>Built with</h2>
 <ul>
 <li>Python</li>
@@ -92,12 +94,12 @@ from the database.</p>
 <h2>Edit cafe page</h2>
 <ul>
 <li>Access the edit cafe page at /edit.</li>
-<li>View that requires users to be logged in and only accessible to the user who added that particular cafe.</li>
+<li>View that requires users to be logged in and only accessible to the user who added that particular cafe or to the admin.</li>
 <li>Edit the selected cafe details through a form. Information associated to the selected cafe are pre-filled in the form; updated information will be saved to the database and displayed at /cafes.</li>
 </ul>
 <h2>Delete cafe page</h2>
 <ul>
-<li>The /delete route is decorated with the login_required decorator and is only visible to the admin User.</li>
+<li>The /delete route is decorated with the login_required decorator and is only visible to the admin user.</li>
 <li>If the cafe with the specified id is found, it is deleted from the database, and the admin is redirected to the updated list of all cafes.</li>
 </ul>
 <h2 style="text-align:center">Database</h2>
