@@ -3,13 +3,14 @@
 
   <div id="images-homePage">
     <img src="/static/images/three-cafes.jpg">
-    <img src="/static/images/inuyama-sakura.jpg">
+    <img src="/static/images/cafeImage.jpg">
     <img src="/static/images/donuts.jpg">
   </div>
-    <h3>🚴🏻‍♂️Went for a ride and find yourself urgently in need 
-    of coffee, power, and sweets?🧁</h3>
-    <p>You've found the right place! Checkout my collection of cafes with data on 
-      power socket availability, wifi speed, coffee and sweets quality.</p>
+    <h3>Hey there, looking for a spot to chill and grab some coffee?☕️</h3>
+    <p>Whether you're in need of a place to get some work done, satisfy your sweet tooth, 
+      or just hang out, I've got you covered!🧁<br>Check out my list of cafes, 
+      where you can find info on things like power outlets, WiFi speed, and how 
+      tasty the coffee and treats are.</p>
     {% if logged_in %}
     <a class="btn btn-warning btn-lg" href="{{ url_for('cafes') }}" role="button">Show me the cafes</a>
     {% endif %}
