@@ -47,7 +47,7 @@
                 <td>{{ cafe.wifi }}</td>
                 <td>{{ cafe.power }}</td>
                 <td>
-                    {% if name == cafe.user.username %}
+                    {% if name == cafe.user.username or is_admin %}
                     <a class="btn btn-warning btn-m" href="{{ url_for('edit', id=cafe.id) }}">
                     Edit</a>
                     {% else %}
